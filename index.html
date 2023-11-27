@@ -74,7 +74,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CSSRulePlugin.min.js" integrity="sha512-+35N1KBHwTDnFOBSqO2nm/qsf5okaS74sUZu/rT/wlvuAfJ1hrAoGlWZip2l1LHB1q2i8B2k84Pb/NrC38bv8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-    
+
+// DOCUMENTATON : https://gsap.com/docs/v3/Eases/
+    let tl = gsap.timeline({
+        defaults: {
+            ease: 'power4.inOut',
+            duration: 2
+        }
+    })
+
+    let flagpoles = CSSRulePlugin.getRule(".card:before")
+    // .to(".form", { "clip-path": "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",opacity: 1, y: 0, duration: 2.2 })
+    tl.to("h1", { "clip-path": "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)", opacity: 1, y: 0, duration: 2.2})
+        .to(".form", { "clip-path": "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",opacity: 1, y: 0 }, "-=2")
+        .from(".card", {scaleY: 0, stagger: .3}, "-=2")
+        .from(flagpoles, {stagger: 1, opacity: 0, transform: "translateY(100px)"}, "-=2")
+        .to(".title, .desc", {stagger: .1, duration: 1.2, opacity: 1, y: 0}, "-=2")
+        .to("footer", {opacity: 1}, "-=2")
 </script>
 </body>
 </html>
